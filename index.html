@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антон Разгуляев | iOS разработчик</title>
+    <style>
+        /* Глобальные стили и CSS-переменные */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2C3E50;
+            --accent-color: #3498DB;
+            --text-light: #ECF0F1;
+            --text-dark: #000000;
+            --background-light: #FFFFFF;
+            --background-alt: #F8F9FA;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 20px;
+            --green-start: #2ecc71;
+            --green-end: #27ae60;
+            --about-bg: #0a1929;
+            --about-card-bg: #132f4c;
+            --about-accent: #64ffda;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Секция с профилем */
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .age {
+            font-size: 2.04rem;
+            font-weight: 100;
+            color: #000000;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .platforms {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* Социальные иконки */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
+        }
+
+        .social-link svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* Блок с мечтой - зеленый градиент */
+        .dream-section {
+            background: linear-gradient(135deg, var(--green-start) 0%, var(--green-end) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+        }
+
+        .dream-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .dream-section p {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        /* Плашки с индивидуальным полупрозрачным фоном */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            padding-bottom: 13px;
+            border-radius: var(--border-radius);
+            color: white;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .value-card p {
+            color: white;
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Блок "Коротко обо мне" - супер-крутой современный дизайн */
+        .about-section {
+            margin: 60px 0;
+            background: var(--about-bg);
+            border-radius: 40px;
+            padding: 50px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Анимированный фон с网格 */
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* Анимированные шарики */
+        .about-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 30px); }
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, var(--about-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .about-header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-card {
+            background: rgba(19, 47, 76, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 30px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--about-accent);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--about-accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .about-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .about-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .about-card-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(100, 255, 218, 0.15);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--about-accent);
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--about-accent);
+            letter-spacing: -0.3px;
+        }
+
+        .about-list {
+            list-style: none;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .about-list li::before {
+            content: '→';
+            color: var(--about-accent);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.15), rgba(100, 255, 218, 0.05));
+            border: 1px solid var(--about-accent);
+            border-radius: 30px;
+            padding: 12px 24px;
+            margin-top: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .book-link:hover {
+            background: var(--about-accent);
+            color: var(--about-bg);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.5);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            color: var(--about-accent);
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: var(--about-accent);
+            color: var(--about-bg);
+            transform: scale(1.05);
+        }
+
+        /* Портфолио */
+        .portfolio {
+            margin: 40px 0;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .portfolio-content {
+            padding: 15px;
+        }
+
+        .portfolio-content h3 {
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            font-size: 1.2rem;
+        }
+
+        .portfolio-content p {
+            color: #666;
+            margin-bottom: 12px;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--background-alt);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            color: #666;
+            border-top: 1px solid #eee;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .age {
+                font-size: 1.7rem;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .dream-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .dream-section p {
+                font-size: 0.9rem;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-link svg {
+                width: 25px;
+                height: 25px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .dream-section {
+                padding: 20px 15px;
+            }
+            
+            .value-card {
+                padding: 15px;
+                padding-bottom: 10px;
+            }
+
+            .about-section {
+                padding: 30px 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid {
+                gap: 12px;
+            }
+            
+            .value-card {
+                padding: 12px;
+                padding-bottom: 8px;
+            }
+            
+            .value-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .value-card p {
+                font-size: 0.85rem;
+            }
+
+            .about-card {
+                padding: 20px;
+            }
+
+            .book-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media print {
+            .social-link, .portfolio-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Профиль -->
+        <section class="profile">
+            <img src="photo.jpg" alt="Антон Разгуляев" class="profile-image">
+            
+            <h1>Разгуляев Антон</h1>
+            
+            <div class="age" id="age">38 лет</div>
+            
+            <div class="title">Программист на языке Swift | разработчик приложений</div>
+            <div class="platforms">iOS, WatchOS, MacOS, AppleOS, TVOS, iPadOS, VisionOS</div>
+
+            <div class="social-links">
+                <a href="https://spb.hh.ru/resume/800a9059ff0c9230260039ed1f32454c4b5450" class="social-link" target="_blank" rel="noopener" title="HeadHunter">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
+                        <text x="6" y="16" fill="white" font-size="8">HH</text>
+                    </svg>
+                </a>
+
+                <a href="https://t.me/antonr87" class="social-link" target="_blank" rel="noopener" title="Telegram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.88 8.86c-.14.64-.51.8-1.03.5l-2.85-2.1-1.38 1.32c-.15.15-.28.28-.58.28l.2-2.99 5.44-4.92c.24-.2-.05-.32-.37-.12l-6.73 4.24-2.9-.9c-.63-.2-.64-.63.13-.94l11.32-4.36c.52-.2.98.12.81.93z"/>
+                    </svg>
+                </a>
+
+                <a href="mailto:9828281@gmail.com" class="social-link" title="Email">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+
+                <a href="https://vk.com/studyswift" class="social-link" target="_blank" rel="noopener" title="VK">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 15.84c-.52.52-1.22.8-1.98.8H13.2c-.76 0-1.46-.28-1.98-.8-.52-.52-.8-1.22-.8-1.98v-2.38c0-.76.28-1.46.8-1.98.52-.52 1.22-.8 1.98-.8h2.38c.76 0 1.46.28 1.98.8.52.52.8 1.22.8 1.98v2.38c0 .76-.28 1.46-.8 1.98z"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.youtube.com/@AntonR8" class="social-link" target="_blank" rel="noopener" title="YouTube">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 15.84c-.52.52-1.22.8-1.98.8H13.2c-.76 0-1.46-.28-1.98-.8-.52-.52-.8-1.22-.8-1.98v-2.38c0-.76.28-1.46.8-1.98.52-.52 1.22-.8 1.98-.8h2.38c.76 0 1.46.28 1.98.8.52.52.8 1.22.8 1.98v2.38c0 .76-.28 1.46-.8 1.98z"/>
+                    </svg>
+                </a>
+
+                <a href="https://dzen.ru/swiftui" class="social-link" target="_blank" rel="noopener" title="Дзен">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Блок с мечтой -->
+        <section class="dream-section">
+            <h2>У меня есть мечта:</h2>
+            <p>Создавать продукт</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>На открытом конкурентном рынке</h3>
+                    <p>Ни что так не мотивирует как конкуренция и соревнования</p>
+                </div>
+                <div class="value-card">
+                    <h3>Улучшающий жизнь потребителей</h3>
+                    <p>Самое главное в работе самореализация, чтобы в старости можно было гордится тем, что сделал</p>
+                </div>
+                <div class="value-card">
+                    <h3>Эстетически безупречный</h3>
+                    <p>Продукт, уродливый внешне, с очень большой долей вероятности, будет ненадежным или неудобным, а красиво спроектированная внешность сама заставит создателей довести до ума все функции</p>
+                </div>
+                <div class="value-card">
+                    <h3>Удобный и наглядный в использовании</h3>
+                    <p>Интерфейс должен быть: наглядным как светофор, т.е. с одного взгляда (с минимальной тратой времени и ума) пользователь должен понять, что до него хочет донести программа, и юзабельным, что в моём понимании измеряется количеством нажатий при вводе информации</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок "Коротко обо мне" - супер-крутой современный дизайн -->
+        <section class="about-section">
+            <div class="about-header">
+                <div class="about-header-icon">👨‍💻</div>
+                <h2>Коротко обо мне</h2>
+            </div>
+
+            <div class="about-grid">
+                <!-- Опыт и достижения -->
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <div class="about-card-icon">⚡️</div>
+                        <h3>Опыт & Достижения</h3>
+                    </div>
+                    <ul class="about-list">
+                        <li>3 года опыта разработки на Swift и SwiftUI</li>
+                        <li>
+                            <a href="https://www.bookvoed.ru/product/swift-ne-vopros-sozdaj-svoe-prilozenie-7683718?ysclid=mmdqw4ldcc361187440" 
+                               class="book-link" 
+                               target="_blank" 
+                               rel="noopener">
+                                📚 автор книги "Swift? - Не вопрос" (2024 г.)
+                            </a>
+                        </li>
+                        <li>Большой опыт от проектирования до размещения в Apple Store подписочных приложений под ключ</li>
+                        <li>Есть опыт создания игр на Sprite Kit <span style="color: var(--about-accent);">😊</span></li>
+                        <li>Делал приложения с поддержкой Apple Watch и виджетами</li>
+                    </ul>
+                </div>
+
+                <!-- Технологии -->
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <div class="about-card-icon">🛠️</div>
+                        <h3>Технологии</h3>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">Structured Concurrency</span>
+                        <span class="tech-tag">URLSession</span>
+                        <span class="tech-tag">Alamofire</span>
+                        <span class="tech-tag">Moja</span>
+                        <span class="tech-tag">SDWebImage</span>
+                        <span class="tech-tag">MapKit</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Combine</span>
+                        <span class="tech-tag">GCD</span>
+                        <span class="tech-tag">REST</span>
+                        <span class="tech-tag">Lottie</span>
+                        <span class="tech-tag">File Manager</span>
+                        <span class="tech-tag">Push Notifications</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">AppsFlyer</span>
+                        <span class="tech-tag">Adapty</span>
+                        <span class="tech-tag">AppHud</span>
+                        <span class="tech-tag">SwiftData</span>
+                        <span class="tech-tag">CoreData</span>
+                    </div>
+                </div>
+
+                <!-- О себе -->
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <div class="about-card-icon">🌍</div>
+                        <h3>О себе</h3>
+                    </div>
+                    <ul class="about-list">
+                        <li>Свободно владею английским языком</li>
+                        <li>Умею работать в одиночку, хочу работать в команде</li>
+                        <li>Локализация приложений для разных стран</li>
+                    </ul>
+                </div>
+
+                <!-- Дополнительные навыки -->
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <div class="about-card-icon">🎯</div>
+                        <h3>Специализация</h3>
+                    </div>
+                    <ul class="about-list">
+                        <li>Подписочные приложения под ключ</li>
+                        <li>Монетизация (AppsFlyer, Adapty, AppHud)</li>
+                        <li>Реальные времени (WebSocket)</li>
+                        <li>Анимации (Lottie)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Портфолио -->
+        <section class="portfolio">
+            <h2>Портфолио приложений</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">📱</div>
+                    <div class="portfolio-content">
+                        <h3>SwiftUI Habit Tracker</h3>
+                        <p>Приложение для отслеживания привычек с красивым интерфейсом на SwiftUI</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">SwiftUI</span>
+                            <span class="tag">CoreData</span>
+                            <span class="tag">iOS 15+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">⌚️</div>
+                    <div class="portfolio-content">
+                        <h3>WatchOS Fitness+</h3>
+                        <p>Фитнес-трекер для Apple Watch с комплексными тренировками</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">WatchOS</span>
+                            <span class="tag">HealthKit</span>
+                            <span class="tag">SwiftUI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">📚</div>
+                    <div class="portfolio-content">
+                        <h3>BookReader Pro</h3>
+                        <p>Клиент для чтения книг с поддержкой PDF и EPUB</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">iPadOS</span>
+                            <span class="tag">PDFKit</span>
+                            <span class="tag">UIKit</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🎮</div>
+                    <div class="portfolio-content">
+                        <h3>TVOS Arcade</h3>
+                        <p>Простые игры для Apple TV с поддержкой пульта</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">TVOS</span>
+                            <span class="tag">SpriteKit</span>
+                            <span class="tag">GameCenter</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">💻</div>
+                    <div class="portfolio-content">
+                        <h3>Markdown Editor</h3>
+                        <p>Редактор Markdown с предпросмотром в реальном времени</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">MacOS</span>
+                            <span class="tag">AppKit</span>
+                            <span class="tag">SwiftUI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🕶️</div>
+                    <div class="portfolio-content">
+                        <h3>VisionOS Space</h3>
+                        <p>Интерактивное пространство для Apple Vision Pro</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">VisionOS</span>
+                            <span class="tag">RealityKit</span>
+                            <span class="tag">SwiftUI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer>
+            <p>© 2024 Антон Разгуляев. Все права защищены.</p>
+        </footer>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthDate = new Date('1987-06-25');
+            const today = new Date();
+            
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            const ageElement = document.getElementById('age');
+            const years = ['год', 'года', 'лет'];
+            const cases = [2, 0, 1, 1, 1, 2];
+            const index = (age % 100 > 4 && age % 100 < 20) ? 2 : cases[(age % 10 < 5) ? age % 10 : 5];
+            
+            ageElement.textContent = `${age} ${years[index]}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', calculateAge);
+    </script>
+</body>
+</html>
