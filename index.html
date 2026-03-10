@@ -3,15 +3,14 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Anton Razguliaev — Senior iOS Developer</title>
 
-<title>Антон Разгуляев — SwiftUI Developer</title>
-
-<meta name="description" content="Портфолио iOS разработчика Антона Разгуляева. Swift, SwiftUI, MVVM, Clean Architecture. Опыт разработки приложений для iOS, watchOS, macOS.">
-<meta name="keywords" content="iOS developer, SwiftUI developer, Swift developer, iOS programmer, mobile developer">
+<meta name="description" content="Swift / SwiftUI iOS Developer portfolio">
+<meta name="keywords" content="iOS developer, SwiftUI, Swift developer portfolio">
 <meta name="author" content="Anton Razguliaev">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
 
 <style>
 
@@ -19,298 +18,305 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;
 }
 
 body{
-background:#f7f9fc;
+
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto;
+background:linear-gradient(180deg,#f5f7ff,#ffffff);
 color:#111;
 line-height:1.6;
 }
 
 .container{
-width:90%;
 max-width:1200px;
 margin:auto;
+padding:40px 20px;
 }
 
-section{
-padding:80px 0;
+h1{
+font-size:56px;
+font-weight:700;
 }
 
-h1,h2,h3{
+h2{
+font-size:36px;
 margin-bottom:20px;
 }
 
-a{
-text-decoration:none;
-color:inherit;
-}
-
-button{
-cursor:pointer;
-border:none;
-padding:12px 24px;
-border-radius:8px;
-background:linear-gradient(135deg,#4f46e5,#7c3aed);
-color:white;
-font-weight:600;
-transition:0.3s;
-}
-
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* HERO */
-
-.hero{
-text-align:center;
-padding-top:120px;
-}
-
-.hero img{
-width:150px;
-height:150px;
-border-radius:50%;
-margin-bottom:20px;
-object-fit:cover;
-}
-
-.subtitle{
-font-size:18px;
+p{
 color:#555;
 }
 
-.small{
+.hero{
+display:grid;
+grid-template-columns:1fr 400px;
+gap:40px;
+align-items:center;
+min-height:80vh;
+}
+
+.glass{
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.4);
+border-radius:24px;
+padding:30px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.hero-buttons{
+margin-top:20px;
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.btn{
+
+padding:14px 22px;
+border-radius:14px;
+border:none;
+cursor:pointer;
+font-weight:600;
+transition:.25s;
+}
+
+.btn-primary{
+
+background:linear-gradient(135deg,#5c6cff,#8c6cff);
+color:white;
+}
+
+.btn-outline{
+background:white;
+border:1px solid #ddd;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.socials{
+margin-top:20px;
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.socials a{
+text-decoration:none;
+color:#555;
 font-size:14px;
+}
+
+.phone{
+width:280px;
+height:560px;
+border-radius:50px;
+background:black;
+padding:12px;
+box-shadow:0 40px 80px rgba(0,0,0,.2);
+margin:auto;
+}
+
+.phone-screen{
+width:100%;
+height:100%;
+background:linear-gradient(180deg,#eee,#ddd);
+border-radius:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
 color:#777;
 }
 
-.social{
-margin-top:20px;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:15px;
+.section{
+margin-top:100px;
 }
-
-.social a{
-font-size:20px;
-transition:0.3s;
-}
-
-.social a:hover{
-color:#4f46e5;
-}
-
-/* PROJECTS */
 
 .projects{
 display:grid;
-grid-template-columns:1fr;
-gap:40px;
+gap:30px;
 }
 
 .project-card{
-background:white;
-border-radius:16px;
-padding:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-transition:0.3s;
-}
 
-.project-card:hover{
-transform:translateY(-5px);
-}
-
-.screens{
 display:grid;
-grid-template-columns:repeat(6,1fr);
+grid-template-columns:400px 1fr;
+gap:30px;
+align-items:center;
+}
+
+.project-images{
+display:grid;
+grid-template-columns:repeat(3,1fr);
 gap:10px;
 }
 
-.screens img{
+.project-images img{
 width:100%;
-border-radius:10px;
+border-radius:12px;
 }
 
-.mobile-scroll{
-display:none;
-overflow-x:auto;
-gap:10px;
-}
-
-.mobile-scroll img{
-height:420px;
-border-radius:10px;
-}
-
-/* SKILLS */
-
-.skills{
+.skills-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .skill{
-margin-bottom:15px;
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
 .progress{
-height:10px;
-background:#ddd;
-border-radius:10px;
-overflow:hidden;
+height:8px;
+background:#eee;
+border-radius:20px;
+margin-top:10px;
 }
 
-.progress div{
+.progress span{
+display:block;
 height:100%;
-background:linear-gradient(135deg,#4f46e5,#7c3aed);
+background:linear-gradient(90deg,#5c6cff,#8c6cff);
+border-radius:20px;
 }
-
-/* TIMELINE */
 
 .timeline{
-border-left:3px solid #4f46e5;
+border-left:2px solid #ddd;
 padding-left:20px;
 }
 
 .timeline-item{
-margin-bottom:25px;
+margin-bottom:30px;
 }
-
-/* CARDS */
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
-margin-top:30px;
 }
 
 .card{
 background:white;
+border-radius:20px;
 padding:20px;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* DREAM */
-
 .dream{
-background:#111;
+background:linear-gradient(135deg,#5c6cff,#8c6cff);
+color:white;
+border-radius:30px;
+padding:60px;
+}
+
+.dream h2{
 color:white;
 }
 
-.dream .card{
-background:#1f1f1f;
-}
-
-/* BOOK */
-
-.book iframe{
-width:100%;
-height:400px;
-border:none;
-border-radius:12px;
-}
-
-/* FOOTER */
-
 footer{
-padding:40px;
 text-align:center;
-font-size:14px;
-color:#666;
+padding:40px;
+color:#888;
 }
-
-/* ANIMATION */
-
-.fade{
-opacity:0;
-transform:translateY(20px);
-transition:1s;
-}
-
-.fade.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-/* MOBILE */
 
 @media(max-width:900px){
 
-.skills{
+.hero{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.project-card{
 grid-template-columns:1fr;
 }
 
-.screens{
-display:none;
-}
-
-.mobile-scroll{
-display:flex;
+.project-images{
+grid-template-columns:repeat(2,1fr);
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<section class="hero container fade">
+<div class="container hero">
 
-<img src="https://i.pravatar.cc/300" alt="photo">
+<div>
 
 <h1>Разгуляев Антон</h1>
 
-<div id="age"></div>
+<p id="age"></p>
 
-<p class="subtitle">
+<p style="margin-top:10px;font-size:18px;">
 Программист на языке Swift | разработчик приложений
 </p>
 
-<p class="small">
-для iOS, WatchOS, MacOS, AppleOS, TVOS, iPadOS, VisionOS
+<p style="font-size:14px;">
+iOS · WatchOS · MacOS · AppleOS · TVOS · iPadOS · VisionOS
 </p>
 
-<p>г. Санкт-Петербург</p>
+<p style="margin-top:10px;">
+📍 Санкт-Петербург
+</p>
 
-<br>
+<div class="hero-buttons">
 
-<a href="#projects"><button>Портфолио приложений</button></a>
-<a href="#contact"><button>Связаться со мной</button></a>
+<button class="btn btn-primary"
+onclick="document.getElementById('projects').scrollIntoView()">
+Портфолио приложений
+</button>
 
-<div class="social">
+<button class="btn btn-outline"
+onclick="location.href='mailto:9828281@gmail.com'">
+Связаться со мной
+</button>
+
+</div>
+
+<div class="socials">
 
 <a href="https://t.me/antonr87">Telegram</a>
 <a href="https://spb.hh.ru/resume/800a9059ff0c9230260039ed1f32454c4b5450">HH</a>
-<a href="https://www.linkedin.com/in/anton-razguliaev-6a4022397/">LinkedIn</a>
+<a href="https://linkedin.com/in/anton-razguliaev-6a4022397">LinkedIn</a>
 <a href="mailto:9828281@gmail.com">Email</a>
 <a href="https://vk.com/studyswift">VK</a>
-<a href="https://www.youtube.com/@AntonR8">YouTube</a>
+<a href="https://youtube.com/@AntonR8">YouTube</a>
 <a href="https://dzen.ru/swiftui">Dzen</a>
 
 </div>
 
-</section>
+</div>
 
-<section id="projects" class="container fade">
+<div class="phone">
 
-<h2>Проекты</h2>
+<div class="phone-screen">
+App Demo
+</div>
+
+</div>
+
+</div>
+
+<div class="container section" id="projects">
+
+<h2>Приложения</h2>
 
 <div class="projects">
 
-<div class="project-card">
+<div class="project-card glass">
 
-<h3>Phone Tracker</h3>
-
-<div class="screens">
+<div class="project-images">
 
 <img src="https://picsum.photos/200/400?1">
 <img src="https://picsum.photos/200/400?2">
@@ -320,211 +326,189 @@ display:flex;
 <img src="https://picsum.photos/200/400?6">
 
 </div>
-
-<div class="mobile-scroll">
-
-<img src="https://picsum.photos/200/400?1">
-<img src="https://picsum.photos/200/400?2">
-<img src="https://picsum.photos/200/400?3">
-<img src="https://picsum.photos/200/400?4">
-<img src="https://picsum.photos/200/400?5">
-<img src="https://picsum.photos/200/400?6">
-
-</div>
-
-<p>Приложение для отслеживания телефона.</p>
-
-<p>SwiftUI • MapKit • CoreLocation • Firebase</p>
-
-<a href="https://apps.apple.com/app/id6752253049">App Store</a>
-
-</div>
-
-<div class="project-card">
-
-<h3>My Heritage</h3>
-
-<div class="screens">
-
-<img src="https://picsum.photos/200/400?11">
-<img src="https://picsum.photos/200/400?12">
-<img src="https://picsum.photos/200/400?13">
-<img src="https://picsum.photos/200/400?14">
-<img src="https://picsum.photos/200/400?15">
-<img src="https://picsum.photos/200/400?16">
-
-</div>
-
-<div class="mobile-scroll">
-
-<img src="https://picsum.photos/200/400?11">
-<img src="https://picsum.photos/200/400?12">
-<img src="https://picsum.photos/200/400?13">
-<img src="https://picsum.photos/200/400?14">
-<img src="https://picsum.photos/200/400?15">
-<img src="https://picsum.photos/200/400?16">
-
-</div>
-
-<p>Генеалогическое приложение.</p>
-
-<p>SwiftUI • CoreData • Cloud Sync</p>
-
-<a href="https://apps.apple.com/app/id6758104641">App Store</a>
-
-</div>
-
-<div class="project-card">
-
-<h3>Art & Image Creator</h3>
-
-<div class="screens">
-
-<img src="https://picsum.photos/200/400?21">
-<img src="https://picsum.photos/200/400?22">
-<img src="https://picsum.photos/200/400?23">
-<img src="https://picsum.photos/200/400?24">
-<img src="https://picsum.photos/200/400?25">
-<img src="https://picsum.photos/200/400?26">
-
-</div>
-
-<div class="mobile-scroll">
-
-<img src="https://picsum.photos/200/400?21">
-<img src="https://picsum.photos/200/400?22">
-<img src="https://picsum.photos/200/400?23">
-<img src="https://picsum.photos/200/400?24">
-<img src="https://picsum.photos/200/400?25">
-<img src="https://picsum.photos/200/400?26">
-
-</div>
-
-<p>Генератор изображений.</p>
-
-<p>SwiftUI • REST API • AI</p>
-
-<a href="https://apps.apple.com/us/app/art-image-creator/id6711346469">App Store</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="container fade">
-
-<h2>Компетенции</h2>
-
-<div class="skills">
 
 <div>
 
+<h3>Phone Tracker</h3>
+
+<p>
+Отслеживание телефонов и локации.
+</p>
+
+<p style="margin-top:10px;">
+SwiftUI · MapKit · CoreLocation · Firebase
+</p>
+
+<a href="https://apps.apple.com/app/id6752253049">
+App Store →
+</a>
+
+</div>
+
+</div>
+
+<div class="project-card glass">
+
+<div class="project-images">
+
+<img src="https://picsum.photos/200/400?7">
+<img src="https://picsum.photos/200/400?8">
+<img src="https://picsum.photos/200/400?9">
+<img src="https://picsum.photos/200/400?10">
+<img src="https://picsum.photos/200/400?11">
+<img src="https://picsum.photos/200/400?12">
+
+</div>
+
+<div>
+
+<h3>My Heritage</h3>
+
+<p>
+Family tree & heritage history app.
+</p>
+
+<p style="margin-top:10px;">
+SwiftUI · CoreData · REST API
+</p>
+
+<a href="https://apps.apple.com/app/id6758104641">
+App Store →
+</a>
+
+</div>
+
+</div>
+
+<div class="project-card glass">
+
+<div class="project-images">
+
+<img src="https://picsum.photos/200/400?13">
+<img src="https://picsum.photos/200/400?14">
+<img src="https://picsum.photos/200/400?15">
+<img src="https://picsum.photos/200/400?16">
+<img src="https://picsum.photos/200/400?17">
+<img src="https://picsum.photos/200/400?18">
+
+</div>
+
+<div>
+
+<h3>Art & Image Creator</h3>
+
+<p>
+AI генерация изображений.
+</p>
+
+<p style="margin-top:10px;">
+SwiftUI · REST API · Combine
+</p>
+
+<a href="https://apps.apple.com/us/app/art-image-creator/id6711346469">
+App Store →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="container section">
+
+<h2>Основные компетенции</h2>
+
+<div class="skills-grid">
+
 <div class="skill">
 Swift
-<div class="progress"><div style="width:100%"></div></div>
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 <div class="skill">
 SwiftUI
-<div class="progress"><div style="width:100%"></div></div>
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 <div class="skill">
-MVVM
-<div class="progress"><div style="width:100%"></div></div>
+MVVM / Clean Architecture
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 <div class="skill">
-REST API
-<div class="progress"><div style="width:100%"></div></div>
-</div>
-
-</div>
-
-<div>
-
-<div class="skill">
-CoreData
-<div class="progress"><div style="width:100%"></div></div>
+Networking / REST
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 <div class="skill">
-Combine
-<div class="progress"><div style="width:100%"></div></div>
+Concurrency / Combine
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 <div class="skill">
-Firebase
-<div class="progress"><div style="width:100%"></div></div>
-</div>
-
-<div class="skill">
-Xcode / Git / Figma
-<div class="progress"><div style="width:100%"></div></div>
+CoreData / SwiftData
+<div class="progress"><span style="width:100%"></span></div>
 </div>
 
 </div>
 
 </div>
 
-</section>
+<div class="container section">
 
-<section class="container fade">
-
-<h2>Опыт разработки</h2>
+<h2>Опыт</h2>
 
 <div class="timeline">
 
-<div class="timeline-item">до 2020 — Project Manager</div>
-<div class="timeline-item">2020 — изучение Python и Swift</div>
-<div class="timeline-item">2022-2023 — daadscholarship стажер</div>
-<div class="timeline-item">2023-2024 — ЮнитиApps iOS Developer</div>
-<div class="timeline-item">2024 — Broad Apps SwiftUI Developer</div>
-<div class="timeline-item">2024-2025 — Freelancer (SpriteKit games)</div>
-<div class="timeline-item">2025-2026 — Growire Solutions</div>
-
+<div class="timeline-item">
+до 2020 — Project Manager
 </div>
 
-<div class="cards">
-
-<div class="card">
-Опыт управления проектами, сертификат IPMA D
+<div class="timeline-item">
+2020 — начало изучения Python и Swift
 </div>
 
-<div class="card">
-Веду соцсети по iOS разработке
+<div class="timeline-item">
+2022–2023 — daadscholarship стажер
 </div>
 
-<div class="card">
-Автор книги "Swift? — Не вопрос!"
-<br><br>
-<a href="https://www.chitai-gorod.ru/product/swift-ne-vopros-sozday-svoe-prilozhenie-3065683">Открыть</a>
+<div class="timeline-item">
+2023–2024 — ЮнитиApps Junior iOS developer
 </div>
 
-<div class="card">
-Высшее образование СПБГПУ<br>
-Свободный английский
+<div class="timeline-item">
+2024 — Broad Apps SwiftUI developer
+</div>
+
+<div class="timeline-item">
+2024–2025 — Фриланс (SpriteKit игры)
+</div>
+
+<div class="timeline-item">
+2025–2026 — Growire Solutions SwiftUI developer
 </div>
 
 </div>
 
-</section>
+</div>
 
-<section class="dream">
+<div class="container section">
 
-<div class="container fade">
+<div class="dream">
 
-<h2>У меня есть мечта: создавать продукт</h2>
+<h2>У меня есть мечта — создавать продукт</h2>
 
-<div class="cards">
+<div class="cards" style="margin-top:30px;">
 
 <div class="card">
 На открытом конкурентном рынке
 </div>
 
 <div class="card">
-Улучшающий жизнь пользователей
+Улучшающий жизнь потребителей
 </div>
 
 <div class="card">
@@ -532,53 +516,36 @@ Xcode / Git / Figma
 </div>
 
 <div class="card">
-Удобный и наглядный
+Удобный и наглядный в использовании
 </div>
 
 </div>
 
 </div>
 
-</section>
+</div>
 
-<footer id="contact">
+<footer>
 
-© 2026 Anton Razguliaev
+© 2026 Anton Razguliaev — iOS Developer
 
 </footer>
 
 <script>
 
-function calculateAge(){
-
-const birth = new Date(1987,5,25)
+const birthDate = new Date(1987,5,25)
 const today = new Date()
 
-let age = today.getFullYear() - birth.getFullYear()
+let age = today.getFullYear() - birthDate.getFullYear()
 
-const m = today.getMonth() - birth.getMonth()
-
-if(m < 0 || (m === 0 && today.getDate() < birth.getDate())){
+if(
+today.getMonth() < birthDate.getMonth() ||
+(today.getMonth()==birthDate.getMonth() && today.getDate()<birthDate.getDate())
+){
 age--
 }
 
-document.getElementById("age").innerText = age + " лет"
-
-}
-
-calculateAge()
-
-const faders=document.querySelectorAll(".fade")
-
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible")
-}
-})
-})
-
-faders.forEach(el=>observer.observe(el))
+document.getElementById("age").innerText="Возраст: "+age+" лет"
 
 </script>
 
