@@ -1,141 +1,233 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steampunk Site</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+<title>Anton Razguliaev | SwiftUI Developer</title>
+
+<meta name="description" content="iOS SwiftUI developer portfolio. Swift, SwiftUI, iOS, Apple platforms developer.">
+<meta name="keywords" content="Swift developer, iOS developer, SwiftUI, Apple developer">
+<meta name="author" content="Anton Razguliaev">
+
+<link rel="icon" href="favicon.ico">
 
 <style>
 
+:root{
+--primary:#4f46e5;
+--secondary:#7c3aed;
+--dark:#111827;
+--text:#374151;
+--bg:#f8fafc;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
 body{
-    margin:0;
-    background:
-    radial-gradient(circle at 20% 20%, #4b2f1a, #1a120d);
-    color:#f1e0c6;
-    font-family:'Special Elite', monospace;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
 }
 
-/* HEADER */
-
-header{
-    background:linear-gradient(145deg,#5a3b22,#2c1b10);
-    border-bottom:3px solid #c79a52;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 0 20px #000 inset;
+section{
+padding:80px 10%;
 }
 
-header h1{
-    font-family:'Cinzel', serif;
-    font-size:40px;
-    letter-spacing:3px;
-    color:#ffd38b;
+h1,h2,h3{
+color:var(--dark);
 }
 
-/* NAV */
-
-nav{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    padding:15px;
-    background:#2a1a0f;
-    border-bottom:2px solid #8b5e34;
+h2{
+font-size:36px;
+margin-bottom:40px;
 }
 
-nav a{
-    text-decoration:none;
-    color:#e7c89a;
-    padding:10px 18px;
-    border:2px solid #8b5e34;
-    border-radius:4px;
-    background:linear-gradient(#5a3b22,#3a2416);
-    transition:.3s;
+button{
+padding:14px 28px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
 }
 
-nav a:hover{
-    background:linear-gradient(#8b5e34,#5a3b22);
-    box-shadow:0 0 10px #c79a52;
+.primary{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:white;
 }
 
-/* MAIN */
-
-main{
-    padding:40px;
-    max-width:1000px;
-    margin:auto;
+.primary:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
 }
 
-/* CARD */
+.secondary{
+background:white;
+border:1px solid #ddd;
+}
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.hero img{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.subtitle{
+font-size:20px;
+margin-top:10px;
+}
+
+.small{
+font-size:14px;
+color:#6b7280;
+}
+
+.socials{
+margin-top:20px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.socials a{
+text-decoration:none;
+font-size:14px;
+color:white;
+background:var(--primary);
+padding:8px 14px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.socials a:hover{
+background:var(--secondary);
+}
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
+
+.project{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+transition:0.3s;
+}
+
+.project:hover{
+transform:translateY(-5px);
+}
+
+.project img{
+width:100%;
+}
+
+.project-content{
+padding:20px;
+}
+
+.tech{
+font-size:14px;
+color:#6b7280;
+margin-top:10px;
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.skill{
+background:white;
+padding:25px;
+border-radius:16px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.progress{
+background:#e5e7eb;
+height:8px;
+border-radius:8px;
+margin-top:6px;
+overflow:hidden;
+}
+
+.progress div{
+height:8px;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+.timeline{
+border-left:3px solid var(--primary);
+padding-left:20px;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.timeline-item{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
 
 .card{
-    background:linear-gradient(145deg,#3b2618,#24150d);
-    border:2px solid #8b5e34;
-    padding:30px;
-    margin-bottom:30px;
-    box-shadow:
-    inset 0 0 10px #000,
-    0 0 15px rgba(0,0,0,0.6);
+background:white;
+padding:20px;
+border-radius:14px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
 }
 
-.card h2{
-    font-family:'Cinzel', serif;
-    color:#ffd38b;
+.dream{
+background:linear-gradient(135deg,#eef2ff,#f5f3ff);
 }
-
-/* BUTTON */
-
-.button{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 22px;
-    background:linear-gradient(#c79a52,#8b5e34);
-    color:#1b110a;
-    text-decoration:none;
-    font-weight:bold;
-    border:2px solid #5a3b22;
-    transition:.3s;
-}
-
-.button:hover{
-    background:linear-gradient(#ffd38b,#c79a52);
-}
-
-/* GEARS */
-
-.gear{
-    position:fixed;
-    width:120px;
-    opacity:0.2;
-    animation:spin 20s linear infinite;
-}
-
-.gear.top{
-    top:30px;
-    right:30px;
-}
-
-.gear.bottom{
-    bottom:30px;
-    left:30px;
-    animation-direction:reverse;
-}
-
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-/* FOOTER */
 
 footer{
-    text-align:center;
-    padding:20px;
-    background:#1b110a;
-    border-top:2px solid #8b5e34;
-    font-size:14px;
+text-align:center;
+padding:40px;
+font-size:14px;
+color:#6b7280;
+}
+
+@media(max-width:768px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
 }
 
 </style>
@@ -143,47 +235,287 @@ footer{
 
 <body>
 
-<header>
-<h1>⚙ Steampunk Portal ⚙</h1>
-</header>
+<section class="hero">
 
-<nav>
-<a href="#">Главная</a>
-<a href="#">Проект</a>
-<a href="#">Галерея</a>
-<a href="#">Контакты</a>
-</nav>
+<img src="https://i.pravatar.cc/300" alt="Anton Razguliaev">
 
-<main>
+<div class="hero-text">
 
-<div class="card">
-<h2>Добро пожаловать</h2>
-<p>
-Этот сайт выполнен в стиле стимпанк — викторианская эстетика,
-механизмы, латунь и паровые технологии.
+<h1>Разгуляев Антон</h1>
+
+<div class="subtitle">
+Swift Developer
+</div>
+
+<div class="small">
+разработчик приложений для iOS, WatchOS, MacOS, AppleOS, TVOS, iPadOS, VisionOS
+</div>
+
+<p style="margin-top:10px;">
+Возраст: <span id="age"></span> • Санкт-Петербург
 </p>
 
-<a class="button" href="#">Подробнее</a>
+<div style="margin-top:25px;display:flex;gap:15px;flex-wrap:wrap;">
+<button class="primary" onclick="scrollToSection('projects')">Портфолио приложений</button>
+<button class="secondary" onclick="scrollToSection('contact')">Связаться</button>
+</div>
+
+<div class="socials">
+
+<a href="https://t.me/antonr87">Telegram</a>
+<a href="https://spb.hh.ru/resume/800a9059ff0c9230260039ed1f32454c4b5450">HH</a>
+<a href="https://linkedin.com">LinkedIn</a>
+<a href="mailto:9828281@gmail.com">Email</a>
+<a href="https://vk.com/studyswift">VK</a>
+<a href="https://youtube.com/@AntonR8">YouTube</a>
+<a href="https://dzen.ru/swiftui">Dzen</a>
+
+</div>
+
+</div>
+</section>
+
+<section id="projects">
+
+<h2>Проекты</h2>
+
+<div class="projects">
+
+<div class="project">
+
+<img src="https://dummyimage.com/600x1200/ddd/000">
+
+<div class="project-content">
+
+<h3>Phone Tracker</h3>
+
+<p>Приложение для отслеживания телефона и геолокации.</p>
+
+<div class="tech">
+SwiftUI • MapKit • Firebase
+</div>
+
+<br>
+
+<a href="https://apps.apple.com/app/id6752253049">App Store</a>
+
+</div>
+</div>
+
+<div class="project">
+
+<img src="https://dummyimage.com/600x1200/ddd/000">
+
+<div class="project-content">
+
+<h3>My Heritage</h3>
+
+<p>Приложение для хранения семейной истории.</p>
+
+<div class="tech">
+SwiftUI • CoreData
+</div>
+
+<br>
+
+<a href="https://apps.apple.com/app/id6758104641">App Store</a>
+
+</div>
+</div>
+
+<div class="project">
+
+<img src="https://dummyimage.com/600x1200/ddd/000">
+
+<div class="project-content">
+
+<h3>Art & Image Creator</h3>
+
+<p>Создание изображений и креативных артов.</p>
+
+<div class="tech">
+SwiftUI • Networking
+</div>
+
+<br>
+
+<a href="https://apps.apple.com/us/app/art-image-creator/id6711346469">App Store</a>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Основные компетенции</h2>
+
+<div class="skills">
+
+<div class="skill">
+
+<h3>Swift</h3>
+
+Основы
+<div class="progress"><div style="width:100%"></div></div>
+
+ООП
+<div class="progress"><div style="width:100%"></div></div>
+
+Generics
+<div class="progress"><div style="width:100%"></div></div>
+
+</div>
+
+<div class="skill">
+
+<h3>SwiftUI</h3>
+
+NavigationStack
+<div class="progress"><div style="width:100%"></div></div>
+
+Animations
+<div class="progress"><div style="width:100%"></div></div>
+
+WidgetKit
+<div class="progress"><div style="width:100%"></div></div>
+
+</div>
+
+<div class="skill">
+
+<h3>Networking</h3>
+
+REST API
+<div class="progress"><div style="width:100%"></div></div>
+
+Alamofire
+<div class="progress"><div style="width:100%"></div></div>
+
+Moya
+<div class="progress"><div style="width:100%"></div></div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Опыт разработки</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">до 2020 — Project Manager</div>
+
+<div class="timeline-item">2020 — начало изучения Python и Swift</div>
+
+<div class="timeline-item">2022–2023 — daadscholarship стажер</div>
+
+<div class="timeline-item">2023–2024 — ЮнитиApps Junior iOS Developer</div>
+
+<div class="timeline-item">2024 — Broad Apps SwiftUI Developer</div>
+
+<div class="timeline-item">2024–2025 — Фриланс (SpriteKit игры)</div>
+
+<div class="timeline-item">2025–2026 — Growire Solutions SwiftUI Developer</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Дополнительно</h2>
+
+<div class="cards">
+
+<div class="card">
+Опыт управления проектами • сертификат IPMA D • успешный стартап • опыт рекламы и переговоров
 </div>
 
 <div class="card">
-<h2>Механические технологии</h2>
-<p>
-Представьте мир, где шестерёнки вращают вычислительные машины,
-дирижабли бороздят небо, а инженеры создают удивительные устройства.
-</p>
-
-<a class="button" href="#">Смотреть</a>
+Веду соцсети по iOS разработке. Увлекаюсь гаджетами и технологиями.
 </div>
 
-</main>
+<div class="card">
+Автор книги "Swift? — Не вопрос!"
+<br><br>
+<a href="https://www.chitai-gorod.ru/product/swift-ne-vopros-sozday-svoe-prilozhenie-3065683">Открыть книгу</a>
+</div>
 
-<footer>
-© 2026 Steampunk Industries
+<div class="card">
+СПБГПУ (Политех). Свободный английский.
+</div>
+
+</div>
+
+</section>
+
+<section class="dream">
+
+<h2>У меня есть мечта: Создавать продукт</h2>
+
+<div class="cards">
+
+<div class="card">
+На открытом конкурентном рынке
+</div>
+
+<div class="card">
+Улучшающий жизнь потребителей
+</div>
+
+<div class="card">
+Эстетически безупречный
+</div>
+
+<div class="card">
+Удобный и наглядный
+</div>
+
+</div>
+
+</section>
+
+<footer id="contact">
+
+© 2026 Anton Razguliaev • SwiftUI Developer
+
 </footer>
 
-<img class="gear top" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Gear_icon.svg">
-<img class="gear bottom" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Gear_icon.svg">
+<script>
+
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({
+behavior:'smooth'
+})
+}
+
+function calculateAge(){
+
+const birthDate = new Date(1987,5,25)
+
+const today = new Date()
+
+let age = today.getFullYear() - birthDate.getFullYear()
+
+const m = today.getMonth() - birthDate.getMonth()
+
+if(m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+age--
+}
+
+document.getElementById("age").innerText = age
+
+}
+
+calculateAge()
+
+</script>
 
 </body>
 </html>
