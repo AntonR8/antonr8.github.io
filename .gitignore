@@ -1,0 +1,7 @@
+.DS_Store
+
+# Исходники ассетов: картинки уже распакованы в media/ и на сайте не используются.
+# Публикуем только видео, на которые ссылается index.html.
+assets/*
+!assets/fingerlakes
+!assets/fishgame
