@@ -1168,7 +1168,6 @@ class Component extends DCLogic {
   setupVideos(reduced) {
     const videos = Array.from(document.querySelectorAll("[data-lazyvideo]"));
     if (!videos.length) return;
-    const isTouch = window.matchMedia("(hover: none)").matches;
     videos.forEach(v => {
       v.muted = true;
       v.loop = true;
@@ -1183,7 +1182,11 @@ class Component extends DCLogic {
       const res = (window.__resources || {})[map[v.dataset.lazyvideo]];
       v.src = res || v.dataset.lazyvideo;
     };
-    if (isTouch || reduced) {
+    // Ждать касания раньше приходилось на всех сенсорных экранах — из-за этого
+    // на iPhone ролики не запускались вовсе. iOS разрешает автозапуск, пока
+    // видео без звука и с playsinline, так что тап нужен только когда система
+    // просит уменьшить анимацию.
+    if (reduced) {
       videos.forEach(v => {
         v.controls = false;
         v.style.cursor = "pointer";
@@ -1202,7 +1205,16 @@ class Component extends DCLogic {
         else if (!v.paused) v.pause();
       });
     }, { threshold: 0.35 });
-    videos.forEach(v => this._vio.observe(v));
+    videos.forEach(v => {
+      this._vio.observe(v);
+      // Тап по ролику ставит на паузу и возобновляет.
+      v.controls = false;
+      v.style.cursor = "pointer";
+      v.addEventListener("click", () => {
+        load(v);
+        if (v.paused) v.play().catch(() => {}); else v.pause();
+      });
+    });
   }
 
   componentDidUpdate(prevProps) {
