@@ -3,18 +3,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anton Razgulyaev — iOS developer, Swift &amp; SwiftUI</title>
-<meta name="theme-color" content="#e4edf9">
+<meta name="theme-color" content="#e4edf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1424" media="(prefers-color-scheme: dark)">
 <script>
-  // Тема ставится до первого кадра, иначе на тёмном устройстве мелькает
-  // светлая, а строка статуса в Safari остаётся светлой полосой.
+  // Тема ставится до первого кадра, иначе на тёмном устройстве мелькает светлая.
   (function () {
     try {
       var saved = localStorage.getItem("ar-portfolio-theme");
-      var theme = saved === "light" || saved === "dark" ? saved
+      var manual = saved === "light" || saved === "dark";
+      var theme = manual ? saved
         : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.dataset.theme = theme;
-      var tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.setAttribute("content", theme === "dark" ? "#0e1424" : "#e4edf9");
+      // Пока тему выбирает устройство, цвет строки статуса берут media-варианты
+      // meta theme-color выше — Safari читает их при разборе head и на более
+      // поздние правки через JS не реагирует. Ручной выбор перекрывает оба.
+      if (manual) {
+        var c = theme === "dark" ? "#0e1424" : "#e4edf9";
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+          m.setAttribute("content", c);
+        });
+      }
     } catch (e) {}
   })();
 </script>
@@ -1037,8 +1045,6 @@ class Component extends DCLogic {
     this.setState({ lang, theme, reduced });
     this.applyLangMeta(lang);
     document.documentElement.dataset.theme = theme;
-    const tc0 = document.querySelector('meta[name="theme-color"]');
-    if (tc0) tc0.setAttribute("content", theme === "dark" ? "#0e1424" : "#e4edf9");
 
     // Следим за темой устройства на лету — но только пока посетитель
     // не переключил тему вручную (тогда в localStorage лежит его выбор).
@@ -1051,8 +1057,7 @@ class Component extends DCLogic {
         const next = e.matches ? "dark" : "light";
         this.setState({ theme: next });
         document.documentElement.dataset.theme = next;
-        const tc = document.querySelector('meta[name="theme-color"]');
-        if (tc) tc.setAttribute("content", next === "dark" ? "#0e1424" : "#e4edf9");
+        // theme-color не трогаем: media-варианты в head переключатся сами.
       };
       this._themeMQ.addEventListener("change", this._onSystemTheme);
     }
@@ -1207,8 +1212,11 @@ class Component extends DCLogic {
   applyTheme = theme => {
     this.setState({ theme });
     document.documentElement.dataset.theme = theme;
-    const tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute("content", theme === "dark" ? "#0e1424" : "#e4edf9");
+    // Ручной выбор перекрывает оба media-варианта, иначе строка статуса
+    // осталась бы в цвете системной темы.
+    const tcColor = theme === "dark" ? "#0e1424" : "#e4edf9";
+    document.querySelectorAll('meta[name="theme-color"]')
+      .forEach(m => m.setAttribute("content", tcColor));
     try { localStorage.setItem("ar-portfolio-theme", theme); } catch (e) {}
   };
 
