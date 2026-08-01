@@ -132,6 +132,11 @@
        и растягивает всю страницу — это и есть причина бокового скролла. */
     [data-shots], [data-skills], [data-dream] { min-width: 0 !important; }
     [data-sechead] { border-bottom: 0 !important; border-top: 1px solid var(--line) !important; padding-bottom: 6px !important; padding-top: 26px !important; }
+    /* Подпись справа сжимала заголовок до трёх строк. Переносим её под
+       заголовок отдельной строкой, а заголовку отдаём всю ширину. */
+    [data-sechead] { flex-wrap: wrap !important; }
+    [data-sechead] > h2 { flex: 1 1 auto !important; min-width: 0 !important; }
+    [data-sechead] > span:last-child { margin-left: 0 !important; flex-basis: 100% !important; }
     [data-cardhead] { display: contents !important; }
     [data-cardhead] div:has(h3) { display: contents !important; }
     [data-cardhead] img { order: 1 !important; align-self: flex-start !important; }
