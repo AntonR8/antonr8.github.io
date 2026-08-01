@@ -3,14 +3,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anton Razgulyaev — iOS developer, Swift &amp; SwiftUI</title>
+<meta name="theme-color" content="#e4edf9">
 <script>
-  // Тема ставится до первого кадра, иначе на тёмном устройстве мелькает светлая.
+  // Тема ставится до первого кадра, иначе на тёмном устройстве мелькает
+  // светлая, а строка статуса в Safari остаётся светлой полосой.
   (function () {
     try {
       var saved = localStorage.getItem("ar-portfolio-theme");
-      document.documentElement.dataset.theme =
-        saved === "light" || saved === "dark" ? saved
-          : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      var theme = saved === "light" || saved === "dark" ? saved
+        : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = theme;
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute("content", theme === "dark" ? "#0e1424" : "#e4edf9");
     } catch (e) {}
   })();
 </script>
@@ -24,7 +28,6 @@
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Anton Razgulyaev, iOS developer in Saint Petersburg. Swift and SwiftUI apps for iOS, iPadOS, watchOS, macOS, tvOS and visionOS — 5 apps on the App Store.">
-<meta name="theme-color" content="#fbfbfc">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Anton Razgulyaev">
 <meta property="og:title" content="Anton Razgulyaev — iOS developer, Swift &amp; SwiftUI">
@@ -1034,6 +1037,8 @@ class Component extends DCLogic {
     this.setState({ lang, theme, reduced });
     this.applyLangMeta(lang);
     document.documentElement.dataset.theme = theme;
+    const tc0 = document.querySelector('meta[name="theme-color"]');
+    if (tc0) tc0.setAttribute("content", theme === "dark" ? "#0e1424" : "#e4edf9");
 
     // Следим за темой устройства на лету — но только пока посетитель
     // не переключил тему вручную (тогда в localStorage лежит его выбор).
