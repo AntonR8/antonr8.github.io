@@ -3,6 +3,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anton Razgulyaev — iOS developer, Swift &amp; SwiftUI</title>
+<script>
+  // Тема ставится до первого кадра, иначе на тёмном устройстве мелькает светлая.
+  (function () {
+    try {
+      var saved = localStorage.getItem("ar-portfolio-theme");
+      document.documentElement.dataset.theme =
+        saved === "light" || saved === "dark" ? saved
+          : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    } catch (e) {}
+  })();
+</script>
 <script src="media/369bdea6-9f54-40ea-9da9-94aa65308bdd.js"></script>
 
 
@@ -790,7 +801,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;ru&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en' | 'ru'&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;,&quot;system&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark' | 'system'&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;ru&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en' | 'ru'&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;,&quot;system&quot;],&quot;default&quot;:&quot;system&quot;,&quot;tsType&quot;:&quot;'light' | 'dark' | 'system'&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
 const ORDER = {
   en: { linkedin: 1, telegram: 2, youtube: 3, email: 4, hh: 5, vk: 6, dzen: 7 },
   ru: { hh: 1, telegram: 2, vk: 3, dzen: 4, linkedin: 5, youtube: 6, email: 7 }
@@ -1024,6 +1035,23 @@ class Component extends DCLogic {
     this.applyLangMeta(lang);
     document.documentElement.dataset.theme = theme;
 
+    // Следим за темой устройства на лету — но только пока посетитель
+    // не переключил тему вручную (тогда в localStorage лежит его выбор).
+    if (this.props.theme === "system") {
+      this._themeMQ = window.matchMedia("(prefers-color-scheme: dark)");
+      this._onSystemTheme = e => {
+        let saved = null;
+        try { saved = localStorage.getItem("ar-portfolio-theme"); } catch (err) {}
+        if (saved === "light" || saved === "dark") return;
+        const next = e.matches ? "dark" : "light";
+        this.setState({ theme: next });
+        document.documentElement.dataset.theme = next;
+        const tc = document.querySelector('meta[name="theme-color"]');
+        if (tc) tc.setAttribute("content", next === "dark" ? "#0e1424" : "#e4edf9");
+      };
+      this._themeMQ.addEventListener("change", this._onSystemTheme);
+    }
+
     this._onScroll = () => {
       const s = window.scrollY > 8;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
@@ -1159,6 +1187,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this._onScroll);
+    if (this._themeMQ) this._themeMQ.removeEventListener("change", this._onSystemTheme);
     if (this._io) this._io.disconnect();
     if (this._vio) this._vio.disconnect();
     if (this._safety) clearTimeout(this._safety);
@@ -1288,7 +1317,8 @@ class Component extends DCLogic {
   renderVals() {
     const lang = this.state.lang || (this.props.defaultLang === "ru" ? "ru" : "en");
     const t = COPY[lang];
-    const theme = this.state.theme || (this.props.theme === "dark" ? "dark" : "light");
+    const theme = this.state.theme || document.documentElement.dataset.theme
+      || (this.props.theme === "dark" ? "dark" : "light");
     const isRU = lang === "ru";
     const isDark = theme === "dark";
     return {
