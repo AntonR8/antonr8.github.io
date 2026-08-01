@@ -158,12 +158,19 @@
     [data-appicons] { gap: 14px 10px !important; }
     header nav { display: none !important; }
     header > div { gap: 10px !important; height: 60px !important; }
+
+    /* Футер в один столбик: имя, кнопка CV, ссылки. display: contents
+       разбирает левую колонку, чтобы кнопка встала между её детьми. */
+    [data-footer] { grid-template-columns: minmax(0, 1fr) !important; gap: 20px !important; }
+    [data-footer] > div:first-child { display: contents !important; }
+    [data-footer] > div:first-child > span { order: 1 !important; }
+    [data-footer] > [data-cvlink] { order: 2 !important; justify-content: center !important; }
+    [data-footer] > div:first-child > div { order: 3 !important; }
   }
   @media (max-width: 400px) {
     [data-metaline] { flex-wrap: wrap; }
     [data-metaline] > span:nth-child(3) { display: none; }
     [data-dream] { grid-template-columns: minmax(0, 1fr) !important; }
-    [data-footer] { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
   }
 </style>
 </helmet>
