@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Anton Razgulyaev — iOS developer, Swift &amp; SwiftUI</title>
 <meta name="theme-color" content="#e4edf9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1424" media="(prefers-color-scheme: dark)">
@@ -34,7 +34,7 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Anton Razgulyaev, iOS developer in Saint Petersburg. Swift and SwiftUI apps for iOS, iPadOS, watchOS, macOS, tvOS and visionOS — 5 apps on the App Store.">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Anton Razgulyaev">
@@ -80,6 +80,16 @@
     --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
   html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  /* Страница не должна ездить вбок: горизонтально скроллятся только
+     карусели внутри себя. clip, а не hidden — hidden сделал бы из html
+     скролл-контейнер и сломал бы sticky-шапку. */
+  html { overflow-x: clip; }
+  body { overflow-x: clip; max-width: 100%; }
+  /* viewport-fit=cover пускает фон страницы под строку статуса, иначе там
+     остаётся серая полоса интерфейса Safari. Шапке и подвалу за это нужен
+     отступ на safe area; на десктопе env() равен нулю. */
+  header { padding-top: env(safe-area-inset-top); }
+  footer { padding-bottom: env(safe-area-inset-bottom); }
   body::before {
     content: ""; position: fixed; inset: 0; z-index: -1; background:
       radial-gradient(72vw 62vw at 8% 4%, rgba(185, 210, 242, 0.55), transparent 70%),
@@ -118,6 +128,9 @@
   [data-shots]::-webkit-scrollbar { display: none; }
   @media (max-width: 768px) {
     [data-shots] { grid-auto-columns: 74vw; }
+    /* Без min-width: 0 блок с overflow-x раздувается до ширины содержимого
+       и растягивает всю страницу — это и есть причина бокового скролла. */
+    [data-shots], [data-skills], [data-dream] { min-width: 0 !important; }
     [data-sechead] { border-bottom: 0 !important; border-top: 1px solid var(--line) !important; padding-bottom: 6px !important; padding-top: 26px !important; }
     [data-cardhead] { display: contents !important; }
     [data-cardhead] div:has(h3) { display: contents !important; }
