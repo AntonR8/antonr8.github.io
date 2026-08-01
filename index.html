@@ -1166,7 +1166,7 @@ class Component extends DCLogic {
     this._safety = setTimeout(() => pending.forEach(reveal), 500);
   }
 
-  // Раздел «Хочу делать продукт» листается сам раз в секунду. На широком
+  // Раздел «Хочу делать продукт» листается сам раз в две секунды. На широком
   // экране пункты выложены сеткой и видны сразу — там листать нечего, это
   // и проверяет сравнение scrollWidth с clientWidth.
   setupDreamAutoplay(reduced) {
@@ -1206,7 +1206,7 @@ class Component extends DCLogic {
         const i = Math.round(rail.scrollLeft / Math.max(1, step));
         const next = i + 1 >= rail.children.length ? 0 : i + 1;
         rail.scrollTo({ left: next * step, behavior: "smooth" });
-      }, 1000);
+      }, 2000);
     };
     start();
   }
