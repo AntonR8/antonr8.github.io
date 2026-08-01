@@ -1137,6 +1137,7 @@ class Component extends DCLogic {
       if (!ok && this._railTries++ < 20) this._railTimer = setTimeout(bindRails, 250);
     };
     bindRails();
+    this.setupDreamAutoplay(reduced);
 
     const cv = document.querySelector("[data-cvlink]");
     const cvRes = (window.__resources || {}).cvPdf;
@@ -1163,6 +1164,51 @@ class Component extends DCLogic {
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
     pending.forEach(n => this._io.observe(n));
     this._safety = setTimeout(() => pending.forEach(reveal), 500);
+  }
+
+  // Раздел «Хочу делать продукт» листается сам раз в секунду. На широком
+  // экране пункты выложены сеткой и видны сразу — там листать нечего, это
+  // и проверяет сравнение scrollWidth с clientWidth.
+  setupDreamAutoplay(reduced) {
+    if (reduced) return;
+    this._dreamTries = 0;
+    const start = () => {
+      const rail = document.querySelector("[data-dream]");
+      if (!rail || !rail.children.length) {
+        if (this._dreamTries++ < 20) this._dreamTimer = setTimeout(start, 250);
+        return;
+      }
+      let paused = false;
+      // Ручной свайп перехватывает управление на несколько секунд.
+      const hold = () => {
+        paused = true;
+        clearTimeout(this._dreamResume);
+        this._dreamResume = setTimeout(() => { paused = false; }, 4000);
+      };
+      rail.addEventListener("pointerdown", hold, { passive: true });
+      rail.addEventListener("wheel", hold, { passive: true });
+
+      let visible = true;
+      if ("IntersectionObserver" in window) {
+        this._dreamIo = new IntersectionObserver(
+          es => es.forEach(e => { visible = e.isIntersecting; }),
+          { threshold: 0.2 }
+        );
+        this._dreamIo.observe(rail);
+      }
+
+      this._dreamInterval = setInterval(() => {
+        if (paused || !visible) return;
+        if (rail.scrollWidth <= rail.clientWidth + 4) return;
+        const first = rail.children[0];
+        const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+        const step = first ? first.getBoundingClientRect().width + gap : rail.clientWidth;
+        const i = Math.round(rail.scrollLeft / Math.max(1, step));
+        const next = i + 1 >= rail.children.length ? 0 : i + 1;
+        rail.scrollTo({ left: next * step, behavior: "smooth" });
+      }, 1000);
+    };
+    start();
   }
 
   setupVideos(reduced) {
@@ -1230,6 +1276,10 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener("scroll", this._onScroll);
     if (this._themeMQ) this._themeMQ.removeEventListener("change", this._onSystemTheme);
+    clearInterval(this._dreamInterval);
+    clearTimeout(this._dreamTimer);
+    clearTimeout(this._dreamResume);
+    if (this._dreamIo) this._dreamIo.disconnect();
     if (this._io) this._io.disconnect();
     if (this._vio) this._vio.disconnect();
     if (this._safety) clearTimeout(this._safety);
