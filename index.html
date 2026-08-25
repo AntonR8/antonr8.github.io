@@ -772,7 +772,7 @@
         <h2 style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 700">{{ t.expHeading }}</h2>
       </div>
 
-      <div data-tl="" style="display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 0 32px; padding-top: 30px">
+      <div data-tl="" style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0 48px; padding-top: 30px">
         <sc-for list="{{ timeline }}" as="row" hint-placeholder-count="7">
           <div style="display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line)">
             <span style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; color: var(--faint); font-variant-numeric: tabular-nums; white-space: nowrap">{{ row.year }}</span>
@@ -881,20 +881,20 @@ const TIMELINE = {
   en: [
     { year: "until 2020", role: "Project manager", org: "" },
     { year: "2020", role: "Started learning to code", org: "Python, then Swift" },
-    { year: "Jun 2022 – Feb 2023", role: "iOS developer intern", org: "daadscholarship" },
-    { year: "Feb 2023 – Feb 2024", role: "Junior iOS developer", org: "ЮнитиApps" },
-    { year: "Mar 2024 – Dec 2024", role: "SwiftUI developer, middle", org: "Broad Apps" },
-    { year: "Feb 2025 – Jun 2025", role: "Freelance", org: "SpriteKit games" },
-    { year: "Jun 2025 – now", role: "iOS developer, middle", org: "Growire Solutions" }
+    { year: "2022 · 9 mos", role: "iOS developer intern", org: "daadscholarship" },
+    { year: "2023 · 1 yr 1 mo", role: "Junior iOS developer", org: "ЮнитиApps" },
+    { year: "2024 · 10 mos", role: "SwiftUI developer, middle", org: "Broad Apps" },
+    { year: "2025 · 5 mos", role: "Freelance", org: "SpriteKit games" },
+    { year: "2025 – now", role: "iOS developer, middle", org: "Growire Solutions" }
   ],
   ru: [
     { year: "до 2020", role: "Проектный менеджер", org: "" },
     { year: "2020", role: "Начал учиться разработке", org: "Python, затем Swift" },
-    { year: "июнь 2022 – февраль 2023", role: "Стажёр iOS-разработчика", org: "daadscholarship" },
-    { year: "февраль 2023 – февраль 2024", role: "iOS-разработчик, junior", org: "ЮнитиApps" },
-    { year: "март 2024 – декабрь 2024", role: "SwiftUI-разработчик, middle", org: "Broad Apps" },
-    { year: "февраль 2025 – июнь 2025", role: "Фрилансер", org: "игры на SpriteKit" },
-    { year: "июнь 2025 – сейчас", role: "iOS-разработчик, middle", org: "Growire Solutions" }
+    { year: "2022 · 9 мес.", role: "Стажёр iOS-разработчика", org: "daadscholarship" },
+    { year: "2023 · 1 г. 1 мес.", role: "iOS-разработчик, junior", org: "ЮнитиApps" },
+    { year: "2024 · 10 мес.", role: "SwiftUI-разработчик, middle", org: "Broad Apps" },
+    { year: "2025 · 5 мес.", role: "Фрилансер", org: "игры на SpriteKit" },
+    { year: "2025 — сейчас", role: "iOS-разработчик, middle", org: "Growire Solutions" }
   ]
 };
 
