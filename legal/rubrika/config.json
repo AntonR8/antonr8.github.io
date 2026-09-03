@@ -1,5 +1,5 @@
 {
-  "_comment": "Эталон ремоут-конфига Rubrika. Публикуется как https://antonr8.github.io/legal/rubrika/config.json (репозиторий antonr8.github.io, папка legal/rubrika/). Приложение читает файл при каждом запуске; учитываются только булевы ключи, остальное игнорируется; удалённый ключ возвращает флаг к значению по умолчанию в сборке. НА ВРЕМЯ РЕВЬЮ: blur_partner_logos=true, use_brand_logos=false. ПОСЛЕ ОДОБРЕНИЯ: blur_partner_logos=false, use_brand_logos=true.",
-  "blur_partner_logos": true,
-  "use_brand_logos": false
+  "_comment": "Ремоут-конфиг Rubrika. Публикуется как https://antonr8.github.io/legal/rubrika/config.json (репозиторий antonr8.github.io, папка legal/rubrika/). Приложение читает файл при каждом запуске; учитываются только булевы ключи, удалённый ключ возвращает флаг к дефолту сборки. ЭТО АВАРИЙНЫЙ РУБИЛЬНИК, а не переключатель «после ревью»: значения ниже совпадают с дефолтами сборки, приложение уходит на ревью в том же виде, в каком его получают пользователи (Guideline 2.3.1). Менять только по претензии правообладателя: use_brand_logos=false вернёт монограммы вместо логотипов соцсетей, blur_partner_logos=true размоет иллюстрацию онбординга целиком (логотипы вшиты в JPEG, иначе их не убрать).",
+  "blur_partner_logos": false,
+  "use_brand_logos": true
 }
