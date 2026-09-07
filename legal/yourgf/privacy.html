@@ -33,11 +33,11 @@
 <nav><a href="./">Your GF App</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></nav>
 <h1>Privacy Policy — Your GF App</h1>
 <p><strong>Effective date:</strong> 4 August 2026</p>
-<p><strong>Last updated:</strong> 4 August 2026</p>
+<p><strong>Last updated:</strong> 7 September 2026</p>
 <hr>
 <h2>The short version</h2>
-<p>Your GF App keeps everything on your phone.</p>
-<p>We do not run servers. We do not have accounts. We do not use analytics, advertising, or tracking. The name and cycle dates you enter never leave your device, and we never see them — we could not retrieve them even if we wanted to.</p>
+<p>Your GF App has no servers of its own, no accounts, no advertising and no tracking. Her name and her cycle dates stay on your phone. We never see them — we could not retrieve them even if we wanted to.</p>
+<p>Two things work differently, and both are optional. If your partner uses Ciclia, the two of you can connect the apps, and her cycle dates then reach you through iCloud — hers and yours, not ours. And if you subscribe, that purchase is recorded by our subscription analytics provider: which plan, when. That record carries nothing about her.</p>
 <p>You can erase everything at any time from <strong>Settings → Erase All Data</strong>.</p>
 <hr>
 <h2>1. Who we are</h2>
@@ -61,16 +61,22 @@
 <tr><td>Which reminders you switched on</td><td>So the app knows what to schedule</td></tr>
 <tr><td>App settings (onboarding completed, consent acknowledgement, app lock on or off)</td><td>So the app behaves consistently</td></tr>
 </tbody></table></div>
+<p><strong>If you have connected with her app,</strong> the device also keeps a copy of what she shares, so that the app still works with no network: the day her cycle started, its length, how long her period lasts, and — if she has switched that on — whether she uses hormonal contraception. It is stored the same way as everything above, and <strong>Erase All Data</strong> removes it with the rest.</p>
 <p>That is the complete list.</p>
-<p>We store the *type* of a date, never a person's name: "her mother's birthday", not who her mother is. The app has no access to your contacts and cannot import anything from them.</p>
-<p><strong>We do not store:</strong> photographs, contacts, precise or approximate location, device identifiers, advertising identifiers, e-mail addresses, phone numbers, health records from Apple Health, or anything else.</p>
+<p>We store the <em>type</em> of a date, never a person's name: "her mother's birthday", not who her mother is. The app has no access to your contacts and cannot import anything from them.</p>
+<p><strong>We do not store:</strong> photographs, contacts, precise or approximate location, advertising identifiers, e-mail addresses, phone numbers, health records from Apple Health, or anything else. The app does not read the advertising identifier and never asks for it.</p>
 <p>The app does not request access to your photo library, camera, contacts, location, microphone, or Apple Health.</p>
-<p><strong>Reminders.</strong> The app can send you reminders — a phase change, a date to remember, a weekly tip. These are *local* notifications: your iPhone schedules and shows them itself, from the dates already on the device. Nothing is sent to us, and there is no push server involved. Permission is only requested at the moment you switch a reminder on, and you can turn them all off again in <strong>Settings → Notifications</strong>.</p>
+<p><strong>Reminders.</strong> The app can send you reminders — a phase change, a date to remember, a weekly tip. These are <em>local</em> notifications: your iPhone schedules and shows them itself, from the dates already on the device. Nothing is sent to us, and there is no push server involved. Permission is only requested at the moment you switch a reminder on, and you can turn them all off again in <strong>Settings → Notifications</strong>.</p>
 <h2>4. What we collect</h2>
-<p><strong>Nothing.</strong></p>
-<p>Apple defines "collect" as transmitting data off the device in a way that lets the developer or its partners access it. By that definition — and by any other reasonable one — we collect no data.</p>
-<p>The app contains no networking code. It makes no requests to us or to any third party. There is no account system, no cloud sync, no backup to our systems, no crash reporting, no analytics SDK, and no advertising SDK. There are no third-party SDKs in the app at all.</p>
-<p>Accordingly, our App Store privacy label states <strong>"Data Not Collected"</strong>.</p>
+<p><strong>Subscription events, and nothing else.</strong></p>
+<p>The app has no servers of ours, no account system, no crash reporting and no advertising. What you enter — her name, her cycle dates, compliments, saved dates, the tips you marked — never reaches us and never reaches anyone else.</p>
+<p><strong>The one exception is your subscription.</strong> When you subscribe, renew, cancel or ask for a refund, that event is recorded by Adapty, our subscription analytics provider, so that we can see whether the app pays for itself. What that record contains: which plan, when, in which country, and a device identifier that is not tied to your name or your Apple ID. What it does not contain: anything at all about her — not her name, not a single date, not one symptom.</p>
+<p>It is not used to track you across other apps or websites, and nothing is shared with advertisers or data brokers.</p>
+<p>Accordingly, our App Store privacy label states <strong>"Purchases — not linked to you"</strong>.</p>
+<p><strong>The pair connection.</strong> The app can connect to Ciclia, the app your partner may use for her own cycle. The connection is optional, it is off until she invites you and you accept, and it is built on Apple's CloudKit: the data sits in her iCloud account and yours, inside a shared area only the two of you can open. It never passes through any system of ours, and we have no way to read it — a developer can inspect only CloudKit's public database, which this app does not use at all.</p>
+<p>What crosses that connection is deliberately short. From her to you: the day her current cycle started, its length, how long her period lasts, and — only if she switches it on in her app — whether she uses hormonal contraception. From whoever paid for a shared subscription to the other person: which subscription it is and when it expires. Nothing else. Not her name, not symptoms, not notes, not anything you have typed on your side.</p>
+<p>Dates cross as a day number rather than a moment in time, so that a phone in Los Angeles and a phone in Moscow agree on which day of the cycle it is.</p>
+<p><strong>Either of you can end it.</strong> She can revoke the connection in her app, and you can disconnect in yours. After that no new data arrives. The copy already on your phone stays until you erase it, because deleting her data off your device is your action, not something her app should reach across and do.</p>
 <h2>5. Information about another person</h2>
 <p>This is the most important section of this policy, so please read it carefully.</p>
 <p>Your GF App is designed for you to enter information — including menstrual cycle dates, which is health information — <strong>about another person</strong>. That person is not the one using the app, and cannot agree to anything through it.</p>
@@ -82,6 +88,7 @@
 <p>The app asks Apple whether a valid subscription exists and stores only the answer — a single yes/no value — on your device, so the widget knows whether to show content. That value contains no personal information.</p>
 <h2>7. How long data is kept, and how to delete it</h2>
 <p>Everything stays on your device until you remove it. There is no expiry, because there is nothing on our side to expire.</p>
+<p>Ending the pair connection stops new data from arriving. The copy already on your phone is removed by <strong>Erase All Data</strong> or by deleting the app, like everything else.</p>
 <p>You can delete everything in two ways:</p>
 <ol>
 <li><strong>Settings → Erase All Data</strong> inside the app. This permanently removes the name, cycle dates, compliments, saved dates, saved tips, ratings and settings. It cannot be undone.</li>
@@ -89,12 +96,14 @@
 </ol>
 <p>Note that if you use iCloud Backup, Apple may include the app's data in your device backup. That backup is held by Apple under your Apple ID and your control, not ours. You can exclude the app from backups in iOS Settings.</p>
 <h2>8. Tracking and advertising</h2>
-<p>The app does not track you. It does not use the App Tracking Transparency framework because it has nothing to ask for. It shows no advertising, and it shares nothing with advertising networks, data brokers, or anyone else.</p>
+<p>The app does not track you. It does not use the App Tracking Transparency framework because it has nothing to ask for: our subscription analytics provider declares no tracking and no tracking domains, and we do not combine anything with data from other companies. It shows no advertising, and it shares nothing with advertising networks or data brokers.</p>
 <p>We do not sell or share personal information, under any definition of those words used in any privacy law.</p>
 <h2>9. Children</h2>
-<p>The app is not directed at children and is rated for users aged 17 and over. We do not knowingly permit use by anyone under that age. Because we collect no data, we hold no information about children.</p>
+<p>The app is not directed at children and is rated for users aged 13 and over. We do not knowingly permit use by anyone under that age. We hold no information that identifies anyone, and nothing that could identify a child.</p>
 <h2>10. Security</h2>
 <p>Data is held in the app's private storage, protected by iOS app sandboxing and device encryption.</p>
+<p><strong>The pair connection.</strong> Data in the shared iCloud area is encrypted in transit and at rest. Under Apple's standard protection, Apple holds the keys; it becomes end-to-end encrypted only if the person whose account it is has turned on Advanced Data Protection in iOS. That is each of your own settings to make, and the app neither changes it nor can see it.</p>
+<p>Being connected also means that a person with access to her Apple ID could reach what she shares. That is true of anything in an iCloud account, and it is the reason the connection carries as little as it does.</p>
 <p><strong>App lock.</strong> Because this app holds information about someone else, you can require Face ID, Touch ID or your device passcode every time the app opens. Turn it on in <strong>Settings → Require Face ID</strong>. While the lock is on, the app also hides its contents when it leaves the screen, so the cycle is not visible in the iOS app switcher.</p>
 <p>Face ID and Touch ID are handled entirely by iOS. The app never receives your face or fingerprint data — only a yes-or-no answer from the system about whether authentication succeeded.</p>
 <p>We recommend turning the app lock on. Without it, anyone who picks up your unlocked phone can open the app and see her cycle.</p>
@@ -102,21 +111,24 @@
 <p><strong>Please note</strong> that the home-screen widget, if you add one, shows the current cycle phase on your home screen and is visible to anyone who can see your screen. The app lock does not cover it, because widgets are drawn by iOS outside the app. If that matters to you, do not add the widget.</p>
 <h2>11. Your rights in the European Economic Area and the United Kingdom</h2>
 <p>If the GDPR or UK GDPR applies to you:</p>
-<p>Because we do not receive or process your information, there is no data held by us that you could access, correct, port, or ask us to erase. Those rights are exercised directly on your device — the app gives you full access to everything it holds and a one-tap way to erase it.</p>
+<p>We do not receive the information you enter, so there is nothing of it held by us that you could access, correct, port, or ask us to erase. Those rights are exercised directly on your device — the app gives you full access to everything it holds and a one-tap way to erase it.</p>
+<p>The one set of records we do hold is your subscription events, processed on our behalf by Adapty. The lawful basis is our legitimate interest in knowing whether the app is financially viable, and the records are not linked to your name or your Apple ID. To ask about them, write to antonr8.apps@outlook.com.</p>
 <p>Menstrual cycle information is "data concerning health" and a special category of personal data. It is precisely because of that sensitivity that the app is built to keep it on your device.</p>
 <p>If you enter information about another person, you are acting as the controller of that information. If you do so for purely personal or household purposes, Article 2(2)(c) generally means the GDPR does not impose obligations on you. If you use the app in any other context, it is your responsibility to establish a lawful basis, which for health data means the explicit consent of the person concerned.</p>
+<p><strong>The pair connection.</strong> When the two of you connect the apps, the health information crossing between you is stored in your own and your partner's iCloud accounts. Apple processes it as the provider of that storage under its own terms; we neither receive it nor process it, and we could not produce it if asked. The lawful basis for her sharing it is her own explicit consent, given in her app, and she withdraws it there by revoking the connection — which takes effect immediately and without going through us.</p>
 <p>You may complain to your national supervisory authority at any time.</p>
 <h2>12. Notice to California residents</h2>
-<p>Under the CCPA as amended by the CPRA: we do not collect, sell, share, or disclose personal information or sensitive personal information. We have not done so in the preceding twelve months. There is therefore nothing to opt out of, and no categories of information or recipients to list.</p>
+<p>Under the CCPA as amended by the CPRA: the only category we collect is <strong>commercial information</strong> — records of subscriptions purchased — collected through our subscription analytics provider for the business purpose of understanding whether the app is viable. We collect no sensitive personal information.</p>
+<p>We do not sell or share personal information, and have not done so in the preceding twelve months. There is therefore nothing to opt out of. Cycle information is never collected at all: it stays on your device.</p>
 <h2>13. Notice to Washington and Nevada residents</h2>
 <p>Washington's My Health My Data Act and Nevada's SB 370 regulate "consumer health data", which includes information about reproductive health.</p>
 <p>We do not collect, process, sell, or share consumer health data. Cycle information you enter remains on your device and is never transmitted to us. We maintain no such data, share it with no affiliates or processors, and make no sales of it. There is consequently no consent to obtain and no right of deletion to exercise against us; you delete the data yourself, on your device.</p>
 <h2>14. Notice to users in Armenia</h2>
-<p>We are established in the Republic of Armenia and the Armenian Law on the Protection of Personal Data applies to us. Because the app transmits nothing to us, we are not an operator of any personal data filing system in respect of the information you enter. The Personal Data Protection Agency of the Ministry of Justice of the Republic of Armenia supervises this area and may be contacted directly.</p>
+<p>We are established in the Republic of Armenia and the Armenian Law on the Protection of Personal Data applies to us. The app transmits none of the information you enter to us, so we are not an operator of any personal data filing system in respect of it. The Personal Data Protection Agency of the Ministry of Justice of the Republic of Armenia supervises this area and may be contacted directly.</p>
 <h2>15. Health disclaimer</h2>
 <p>Your GF App is not a medical device. Cycle phases, mood levels and energy levels shown in the app are estimates calculated from the dates you enter. They are not a diagnosis, not medical advice, and must not be used as contraception or to plan or avoid pregnancy. Consult a qualified healthcare professional for medical questions.</p>
 <h2>16. International users</h2>
-<p>The app functions identically everywhere and transfers no data across borders, because it transfers no data at all.</p>
+<p>The app works identically everywhere. It transfers nothing to us, anywhere, because there is nothing of ours to transfer it to. If you use the pair connection, the data crossing it is held in Apple's iCloud infrastructure, and the location of that infrastructure is determined by Apple under its own terms — see Apple's Privacy Policy. Subscription events are processed by Adapty under its own terms.</p>
 <h2>17. Changes to this policy</h2>
 <p>If we change how the app handles information, we will update this policy and change the "Last updated" date before or at the same time as the change reaches users. Material changes will be highlighted inside the app.</p>
 <h2>18. Contact</h2>
