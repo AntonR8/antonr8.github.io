@@ -1648,5 +1648,127 @@ class Component extends DCLogic {
 
 </script>
 
+<!-- Подарок для посетителей с Mac: при первом визите — окно со ссылкой на
+     LayoutSwitcher. Живёт вне шаблона: чистый DOM, язык берём из <html lang>,
+     который выставляет компонент выше. -->
+<style>
+  #mac-gift {
+    width: min(400px, calc(100vw - 32px)); box-sizing: border-box; margin: auto; padding: 28px 26px 22px;
+    border: 1px solid var(--glass-b2); border-radius: 22px; color: var(--fg); text-align: center;
+    background: var(--glass-2); backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 30px 80px -30px rgba(13, 14, 17, 0.45);
+  }
+  html[data-theme="dark"] #mac-gift {
+    background: rgba(18, 24, 40, 0.82); border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  }
+  #mac-gift::backdrop { background: rgba(13, 14, 17, 0.32); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  #mac-gift[open] { animation: mac-gift-in 320ms cubic-bezier(0.34, 1.28, 0.64, 1); }
+  @keyframes mac-gift-in { from { opacity: 0; transform: translateY(12px) scale(0.96); } }
+  @media (prefers-reduced-motion: reduce) { #mac-gift[open] { animation: none; } }
+  #mac-gift [data-gift-icon] {
+    display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; margin-bottom: 14px;
+    border-radius: 16px; background: var(--accent); color: #ffffff; box-shadow: 0 10px 24px -10px rgba(10, 108, 255, 0.6);
+  }
+  #mac-gift [data-gift-eyebrow] { margin: 0 0 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  #mac-gift h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+  #mac-gift p { margin: 0 0 20px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+  #mac-gift [data-gift-actions] { display: flex; flex-direction: column; gap: 8px; }
+  #mac-gift a, #mac-gift button {
+    display: flex; align-items: center; justify-content: center; height: 46px; border-radius: 12px;
+    font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 180ms ease-out, transform 160ms ease-out;
+  }
+  #mac-gift a { background: var(--accent); color: #ffffff; box-shadow: 0 8px 20px -8px rgba(10, 108, 255, 0.55); }
+  #mac-gift a:hover { background: var(--accent-hover); color: #ffffff; }
+  #mac-gift button { border: 0; background: transparent; color: var(--muted); }
+  #mac-gift button:hover { color: var(--fg); }
+  #mac-gift a:active, #mac-gift button:active { transform: scale(0.975); }
+  #mac-gift [data-gift-note] { margin: 12px 0 0; font-size: 12.5px; color: var(--faint); }
+</style>
+<script>
+  (function () {
+    var KEY = "ar-portfolio-mac-gift";
+    var DMG = "https://github.com/AntonR8/LayoutSwitcher/releases/latest/download/LayoutSwitcher.dmg";
+    var COPY = {
+      en: {
+        eyebrow: "A gift for Mac users",
+        title: "LayoutSwitcher — free",
+        text: "Typed ghjdthrf instead of проверка? Double-tap Shift and the text is retyped in the right layout. A small menu bar app of mine, open source.",
+        download: "Download for macOS",
+        close: "Not now",
+        note: "macOS 13+ · Apple Silicon & Intel · notarized by Apple"
+      },
+      ru: {
+        eyebrow: "Подарок для пользователей Mac",
+        title: "LayoutSwitcher — бесплатно",
+        text: "Набрали ghjdthrf вместо «проверка»? Дважды нажмите Shift — и текст перепечатается в нужной раскладке. Моё небольшое приложение в строке меню, с открытым кодом.",
+        download: "Скачать для macOS",
+        close: "Не сейчас",
+        note: "macOS 13+ · Apple Silicon и Intel · нотаризовано Apple"
+      }
+    };
+
+    // iPad в Safari тоже называет себя «Macintosh» — отличаем по тачскрину.
+    var ua = navigator.userAgent || "";
+    var platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
+    var isMac = (/Mac/i.test(platform) || /Macintosh|Mac OS X/.test(ua)) && !(navigator.maxTouchPoints > 1);
+    if (!isMac || typeof HTMLDialogElement !== "function") return;
+    try {
+      if (localStorage.getItem(KEY)) return;
+    } catch (e) { return; } // без хранилища окно показывалось бы на каждом заходе
+
+    function render(dialog) {
+      var c = COPY[document.documentElement.lang === "ru" ? "ru" : "en"];
+      dialog.querySelector("[data-gift-eyebrow]").textContent = c.eyebrow;
+      dialog.querySelector("h2").textContent = c.title;
+      dialog.querySelector("p").textContent = c.text;
+      dialog.querySelector("a").textContent = c.download;
+      dialog.querySelector("button").textContent = c.close;
+      dialog.querySelector("[data-gift-note]").textContent = c.note;
+    }
+
+    function show() {
+      var dialog = document.createElement("dialog");
+      dialog.id = "mac-gift";
+      dialog.setAttribute("aria-labelledby", "mac-gift-title");
+      dialog.innerHTML =
+        '<span data-gift-icon aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span>' +
+        '<div data-gift-eyebrow></div><h2 id="mac-gift-title"></h2><p></p>' +
+        '<div data-gift-actions><a href="' + DMG + '" download></a><button type="button"></button></div>' +
+        '<div data-gift-note></div>';
+      render(dialog);
+      function dismiss() {
+        if (dialog.open) dialog.close();
+        lang.disconnect();
+        dialog.remove();
+      }
+      dialog.querySelector("a").addEventListener("click", dismiss);
+      dialog.querySelector("button").addEventListener("click", dismiss);
+      // Клик по затемнению вокруг карточки тоже закрывает.
+      dialog.addEventListener("click", function (e) { if (e.target === dialog) dismiss(); });
+      // Esc закрывает сам <dialog> — убираем его следом.
+      dialog.addEventListener("close", dismiss);
+      // Если посетитель переключит EN/RU при открытом окне — перевести и его.
+      var lang = new MutationObserver(function () { render(dialog); });
+      lang.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      document.body.appendChild(dialog);
+      dialog.showModal();
+      // Фокус на «Скачать», а не на первом элементе по порядку.
+      dialog.querySelector("a").focus();
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    }
+
+    // Ждём, пока компонент смонтируется и выставит язык, затем даём секунду
+    // на первый взгляд на страницу. На load не завязываемся: он ждёт все
+    // видео и может не наступить очень долго.
+    var tries = 0;
+    function waitForPage() {
+      if (document.documentElement.lang || ++tries > 20) setTimeout(show, 1200);
+      else setTimeout(waitForPage, 250);
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", waitForPage);
+    else waitForPage();
+  })();
+</script>
 
 </body></html>
