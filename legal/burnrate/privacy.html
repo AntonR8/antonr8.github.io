@@ -31,16 +31,16 @@ footer{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--line);
 <header><h1>Burnrate</h1><p class="sub">Claude usage and spend for iPhone, iPad, Mac and Apple Watch</p>
 <nav><a href="index.html">Support</a><a href="privacy.html" aria-current="page">Privacy</a><a href="terms.html">Terms</a></nav></header>
 <h2>Privacy Policy for Burnrate</h2>
-<p><strong>Last updated: 30 September 2026</strong></p>
+<p><strong>Last updated: 26 November 2026</strong></p>
 <p>This Privacy Policy explains how Burnrate (&quot;<strong>Burnrate</strong>&quot;, the &quot;<strong>App</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>us</strong>&quot;) handles information when you use the App. Burnrate shows how much of your Claude usage limits you have spent, on iPhone, iPad, Mac, Apple Watch and in widgets.</p>
 <p>The App is provided by <strong>Anton Razguliaev, Individual Entrepreneur</strong> (&quot;we&quot;), registered in the <strong>Republic of Armenia</strong> (state registration number 286.1580989, taxpayer ID (TIN) 20286933).</p>
-<p><strong>Short version:</strong> Burnrate has no servers of its own and no accounts of its own. Everything it reads comes from <em>your</em> Claude account and <em>your</em> computer, and everything it keeps stays on your devices or in your own private iCloud storage, which we cannot read. We do <strong>not</strong> sell your data, share it with data brokers, advertise inside the App, or track you across other apps and websites. Nothing is sent to us.</p>
+<p><strong>Short version:</strong> Burnrate has no accounts of its own. Everything it reads comes from <em>your</em> Claude account and <em>your</em> computer, and everything it keeps stays on your devices or in your own private iCloud storage, which we cannot read. The only server we run is a small relay that delivers Live Activity and widget updates from your Mac to your iPhone; it passes them on to Apple and stores nothing (section 8a). We do not sell your data, share it with data brokers, advertise inside the App, or track you across other apps and websites.</p>
 
 <h2>1. Who this policy applies to</h2>
 <p>This policy applies to the Burnrate apps for iPhone, iPad, Mac and Apple Watch, and to the widgets and Live Activities that come with them.</p>
 
 <h2>2. Information we do NOT collect</h2>
-<p>We do not operate a server, an account system, or an analytics pipeline for this App. Specifically, we do not collect:</p>
+<p>We do not operate an account system or an analytics pipeline for this App, and the push relay described in section 8a keeps nothing. Specifically, we do not collect:</p>
 <ul>
 <li>your name, email address, or any account identifier;</li>
 <li>the contents of your conversations with Claude;</li>
@@ -49,10 +49,10 @@ footer{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--line);
 <li>usage analytics, crash telemetry, or advertising identifiers;</li>
 <li>your location.</li>
 </ul>
-<p>Apart from the purchase records described in section 2a, we receive no data from the App. There is no server of ours for it to send anything to.</p>
+<p>Apart from the purchase records described in section 2a and the push deliveries described in section 8a, we receive no data from the App.</p>
 
 <h2>2a. Purchases</h2>
-<p>The App offers one optional, one-time purchase that unlocks additional screens. Payment is handled by <strong>Apple</strong> through the App Store; we never see your payment details. Apple's handling of the transaction is covered by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</p>
+<p>The App offers one optional, one-time purchase that unlocks additional screens, the animated ring in widgets, and the Live Activity on the lock screen (each is free for the first week). Payment is handled by <strong>Apple</strong> through the App Store; we never see your payment details. Apple's handling of the transaction is covered by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</p>
 <p>To confirm the purchase and unlock it on your devices, the App uses <strong>Adapty</strong> (Adapty Tech Inc.), a purchase-management service. Adapty receives the purchase history for this App (the product, the time, and Apple's transaction identifiers) together with a random installation identifier and device identifiers, and technical details such as the app version, device model, system version, language and IP address. It does not receive your name, your email address, anything from your Claude account, or the advertising identifier — its collection is switched off in the App.</p>
 <p>We use this only to make the purchase work and to see sales in aggregate. It is not used for advertising and is not used to track you across other companies' apps or websites. Adapty's handling of this data is covered by <a href="https://adapty.io/privacy">Adapty's Privacy Policy</a>.</p>
 
@@ -78,10 +78,15 @@ footer{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--line);
 
 <h2>8. Notifications and Live Activities</h2>
 <p>The App can notify you when a limit is approaching, when a session window resets, and shortly before one ends. Notifications scheduled by time are created on your device and never leave it. Alerts that originate on your Mac travel to your other devices through your own private CloudKit database, as described in section 6.</p>
-<p>The Live Activity on your lock screen is updated through <strong>Apple Push Notification service</strong>. The activity token is a random identifier issued by Apple for that activity; it is shared between your own devices through your private CloudKit database and is used only to update that activity. It does not identify you to us.</p>
+<p>The Live Activity on your lock screen and your widgets are updated through <strong>Apple Push Notification service</strong>. The tokens involved are random identifiers issued by Apple for that activity or those widgets; they are shared between your own devices through your private CloudKit database and are used only to update them. They do not identify you to us.</p>
+
+<h2>8a. The push relay</h2>
+<p>Sending a push through Apple requires a signing key that cannot safely be shipped inside the App. So your Mac does not talk to Apple directly: it hands each update to a small relay we run on <strong>Google Cloud</strong> (Firebase, region europe-west1), and the relay signs it and passes it to Apple.</p>
+<p>Each request contains only: the Apple push token of your device, which Apple environment it belongs to, and the update itself — your session usage percentage, its reset time, the weekly percentage and its reset time, and the time the figures were taken. Requests to refresh widgets contain no figures at all.</p>
+<p>The relay does not store any of this. It does not write requests to a database, does not log push tokens or figures, and keeps nothing after the request is answered. Google, as the hosting provider, processes the request and may record technical details such as the IP address and time of the call in its own infrastructure logs; this is covered by Google Cloud's privacy terms. The relay accepts only Live Activity and widget updates and refuses anything that would show a notification.</p>
 
 <h2>9. Widgets and Apple Watch</h2>
-<p>Widgets and the Apple Watch app read the same snapshot from the shared container on your device. They make no network requests of their own.</p>
+<p>Widgets and the Apple Watch app read the same snapshot from the shared container on your device, and fetch it from your private CloudKit database when it is out of date. They contact no other service.</p>
 
 <h2>10. Links to other services</h2>
 <p>The App links to claude.ai, to Anthropic's documentation, to the author's website, and to the App Store. Opening them is your choice, and those services have their own privacy policies.</p>
@@ -90,7 +95,7 @@ footer{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--line);
 <p>The App is not directed at children under 13, and we do not knowingly collect information from them. Apart from the purchase records described in section 2a, we hold nothing about you; anything else the App keeps is on your own device and under your control. To ask for the purchase records to be deleted, write to the address below.</p>
 
 <h2>12. Data retention and deletion</h2>
-<p>Apart from the purchase records described in section 2a, we retain nothing, because we receive nothing. To remove what the App holds: sign out to drop the claude.ai session; revoke folder access in macOS System Settings to stop the log scan; and delete the App to remove its local storage. To remove the synced snapshot, delete the App's data in <strong>Settings → Apple Account → iCloud</strong> on your device.</p>
+<p>Apart from the purchase records described in section 2a, we retain nothing: the push relay (section 8a) passes requests on without storing them. To remove what the App holds: sign out to drop the claude.ai session; revoke folder access in macOS System Settings to stop the log scan; and delete the App to remove its local storage. To remove the synced snapshot, delete the App's data in <strong>Settings → Apple Account → iCloud</strong> on your device.</p>
 
 <h2>13. Security</h2>
 <p>All network requests the App makes use HTTPS. Your Claude session is kept by the system in the App's own website data store and is never copied by us. The telemetry listener is bound to loopback only. The App holds no secret of ours on your device.</p>
